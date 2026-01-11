@@ -94,17 +94,10 @@
             position: relative;
             width: 100%;
             max-width: 550px;
-            background: repeating-linear-gradient(90deg, var(--wood-dark) 0px, var(--wood-light) 2px, var(--wood-dark) 4px), linear-gradient(180deg, var(--wood-dark) 0%, #2a1a10 100%);
-            border: 12px solid;
-            border-image: repeating-linear-gradient(45deg, var(--border-ornate) 0px, var(--gold) 8px, var(--border-ornate) 16px, #5c4a3a 24px, var(--border-ornate) 32px) 12;
-            box-shadow: inset 0 0 30px rgba(0,0,0,0.5), 0 0 30px rgba(0,0,0,0.6), 0 15px 50px rgba(0,0,0,0.5);
-            padding: 0.75rem;
+            padding: 0;
         }
 
-        .cover-frame::before, .cover-frame::after { content: ''; position: absolute; width: 40px; height: 40px; border: 2px solid var(--gold); opacity: 0.5; z-index: 3; }
-        .cover-frame::before { top: 18px; left: 18px; border-right: none; border-bottom: none; }
-        .cover-frame::after { bottom: 18px; right: 18px; border-left: none; border-top: none; }
-        .cover-image { width: 100%; height: auto; display: block; box-shadow: 0 0 0 3px var(--border-ornate); }
+        .cover-image { width: 100%; height: auto; display: block; box-shadow: 0 4px 15px rgba(0,0,0,0.3); }
 
         .book-title {
             font-family: 'Cinzel', serif;
@@ -185,16 +178,10 @@
         .back-cover-frame {
             position: relative;
             width: 100%;
-            background: repeating-linear-gradient(90deg, var(--wood-dark) 0px, var(--wood-light) 2px, var(--wood-dark) 4px), linear-gradient(180deg, var(--wood-dark) 0%, #2a1a10 100%);
-            border: 10px solid;
-            border-image: repeating-linear-gradient(45deg, var(--border-ornate) 0px, var(--gold) 8px, var(--border-ornate) 16px, #5c4a3a 24px, var(--border-ornate) 32px) 10;
-            box-shadow: inset 0 0 20px rgba(0,0,0,0.4), 0 0 20px rgba(0,0,0,0.3), 0 10px 40px rgba(0,0,0,0.3);
-            padding: 0.5rem;
+            padding: 0;
         }
 
-        .back-cover-frame::before, .back-cover-frame::after { content: ''; position: absolute; width: 30px; height: 30px; border: 2px solid var(--gold); opacity: 0.4; z-index: 3; }
-        .back-cover-frame::before { top: 14px; left: 14px; border-right: none; border-bottom: none; }
-        .back-cover-frame::after { bottom: 14px; right: 14px; border-left: none; border-top: none; }
+        .back-cover-image { width: 100%; height: auto; display: block; box-shadow: 0 4px 15px rgba(0,0,0,0.3); }
 
         .back-cover-image {
             width: 100%;
