@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Small Footsteps | Innatraea Novella One</title>
+    <title>Innatraea | Fantasy Novellas by E.R. Zaugg</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
@@ -60,13 +60,6 @@
             display: flex;
             align-items: center;
             gap: 1rem;
-        }
-
-        .logo-container a {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            text-decoration: none;
         }
 
         .logo-img {
@@ -181,55 +174,78 @@
             padding-left: 1.25rem;
         }
 
-        /* MAIN CONTENT - SPLIT VIEW */
-        main {
-            min-height: 100vh;
-            display: flex;
+        /* HERO BANNER - Full width across top */
+        .hero-banner {
             margin-top: 70px;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
         }
 
-        /* LEFT SIDE - CHARACTER ART */
+        .hero-banner img {
+            width: 100%;
+            height: auto;
+            display: block;
+            min-height: 300px;
+            object-fit: cover;
+        }
+
+        .hero-placeholder {
+            width: 100%;
+            min-height: 400px;
+            background: 
+                linear-gradient(135deg, rgba(201,162,39,0.1) 0%, transparent 50%),
+                linear-gradient(45deg, #1a1208 0%, #3d2b1f 30%, #5c4033 50%, #3d2b1f 70%, #1a1208 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 3rem;
+        }
+
+        .hero-placeholder .hero-logo {
+            max-width: 600px;
+            width: 80%;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-placeholder .hero-title {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(1rem, 3vw, 1.5rem);
+            letter-spacing: 0.3em;
+            color: var(--parchment);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .hero-placeholder .hero-seal {
+            width: 60px;
+            margin-top: 1.5rem;
+            opacity: 0.8;
+        }
+
+        /* MAIN CONTENT - SPLIT VIEW */
+        .main-content {
+            display: flex;
+            min-height: 80vh;
+        }
+
+        /* LEFT SIDE - CELTIC FRAME WITH VIDEO */
         .split-left {
             flex: 1;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            padding: 2rem;
-            background: var(--bg-dark);
-            position: relative;
-            overflow: hidden;
+            padding: 1.5rem;
+            background: 
+                linear-gradient(135deg, #2d2118 0%, #1a1510 50%, #2d2118 100%);
         }
 
-        /* Character art as background */
-        .character-art-container {
+        .celtic-frame {
             position: relative;
             width: 100%;
             max-width: 600px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .author-name {
-            font-family: 'Cinzel', serif;
-            font-size: clamp(1.5rem, 4vw, 2.5rem);
-            font-weight: 400;
-            letter-spacing: 0.4em;
-            color: var(--parchment);
-            text-shadow: 
-                0 2px 10px rgba(0,0,0,0.8),
-                0 0 30px rgba(0,0,0,0.5);
-            margin-bottom: 1.5rem;
-            text-align: center;
-            position: relative;
-            z-index: 2;
-        }
-
-        .character-frame {
-            position: relative;
-            width: 100%;
-            max-width: 480px;
+            /* Wood grain background */
             background: 
                 repeating-linear-gradient(
                     90deg,
@@ -238,7 +254,8 @@
                     var(--wood-dark) 4px
                 ),
                 linear-gradient(180deg, var(--wood-dark) 0%, #2a1a10 100%);
-            border: 12px solid;
+            /* Ornate border */
+            border: 15px solid;
             border-image: 
                 repeating-linear-gradient(
                     45deg,
@@ -247,66 +264,122 @@
                     var(--border-ornate) 16px,
                     #5c4a3a 24px,
                     var(--border-ornate) 32px
-                ) 12;
+                ) 15;
             box-shadow:
-                inset 0 0 30px rgba(0,0,0,0.5),
+                inset 0 0 40px rgba(0,0,0,0.6),
+                inset 0 0 80px rgba(0,0,0,0.3),
                 0 0 30px rgba(0,0,0,0.6),
                 0 15px 50px rgba(0,0,0,0.5);
-            padding: 0.75rem;
+            padding: 1.5rem;
         }
 
-        .character-frame::before,
-        .character-frame::after {
+        /* Ornate corner accents */
+        .celtic-frame::before,
+        .celtic-frame::after {
             content: '';
             position: absolute;
-            width: 40px;
-            height: 40px;
-            border: 2px solid var(--gold);
+            width: 50px;
+            height: 50px;
+            border: 3px solid var(--gold);
             opacity: 0.5;
-            z-index: 3;
         }
 
-        .character-frame::before {
-            top: 18px;
-            left: 18px;
+        .celtic-frame::before {
+            top: 20px;
+            left: 20px;
             border-right: none;
             border-bottom: none;
         }
 
-        .character-frame::after {
-            bottom: 18px;
-            right: 18px;
+        .celtic-frame::after {
+            bottom: 20px;
+            right: 20px;
             border-left: none;
             border-top: none;
         }
 
-        .character-image {
+        .frame-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Video area inside frame */
+        .video-container {
+            width: 100%;
+            max-width: 500px;
+            position: relative;
+            box-shadow: 
+                0 8px 40px rgba(0,0,0,0.7),
+                0 0 0 4px var(--border-ornate),
+                0 0 0 6px rgba(201,162,39,0.3);
+        }
+
+        .video-container video {
             width: 100%;
             height: auto;
             display: block;
-            box-shadow: 0 0 0 3px var(--border-ornate);
         }
 
-        /* Book covers below */
-        .book-covers {
+        .video-placeholder {
+            width: 100%;
+            aspect-ratio: 16/9;
+            background: 
+                radial-gradient(ellipse at 30% 30%, rgba(201,162,39,0.1) 0%, transparent 50%),
+                linear-gradient(135deg, #1a1208 0%, #2a1f14 50%, #1a1208 100%);
             display: flex;
-            gap: 1rem;
-            margin-top: 2rem;
+            flex-direction: column;
+            align-items: center;
             justify-content: center;
+            color: var(--border-ornate);
+            font-family: 'Cinzel', serif;
+            font-size: 0.85rem;
+            letter-spacing: 0.1em;
+            text-align: center;
+            padding: 2rem;
         }
 
-        .book-cover {
+        /* Social links below frame */
+        .social-links {
+            display: flex;
+            gap: 0.75rem;
+            margin-top: 1.5rem;
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            border: 1px solid var(--border-ornate);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            background: rgba(26,21,16,0.8);
+        }
+
+        .social-link:hover {
+            border-color: var(--gold);
+            background: rgba(201,162,39,0.15);
+            transform: translateY(-2px);
+        }
+
+        .social-link img {
+            width: 20px;
+            height: 20px;
+            opacity: 0.85;
+        }
+
+        /* Wax Seal Decoration */
+        .wax-seal {
             width: 100px;
-            height: auto;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
-            transition: transform 0.3s ease;
+            height: 100px;
+            margin-top: 1.5rem;
+            opacity: 0.85;
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.4));
         }
 
-        .book-cover:hover {
-            transform: translateY(-5px);
-        }
-
-        /* RIGHT SIDE - PARCHMENT WITH BOOK INFO */
+        /* RIGHT SIDE - PARCHMENT SCROLL BACKGROUND */
         .split-right {
             flex: 1;
             display: flex;
@@ -350,34 +423,19 @@
 
         .innatraea-logo {
             display: block;
-            max-width: 380px;
+            max-width: 400px;
             width: 100%;
-            margin: 0 auto 1rem;
+            margin: 0 auto 1.5rem;
         }
 
-        .novella-title {
-            font-family: 'Cinzel', serif;
-            font-size: 1rem;
-            font-weight: 600;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            color: var(--text-dark);
-            text-align: center;
-            margin-bottom: 1.5rem;
-        }
-
-        .book-taglines {
-            text-align: center;
-            margin-bottom: 1.5rem;
-        }
-
-        .book-taglines p {
+        .series-subtitle {
             font-family: 'Cormorant Garamond', serif;
             font-size: 1.15rem;
-            font-weight: 500;
+            font-weight: 600;
+            font-style: italic;
             color: var(--text-dark);
-            line-height: 1.6;
-            margin-bottom: 0.4rem;
+            text-align: center;
+            margin-bottom: 1.25rem;
         }
 
         .tavid-quote {
@@ -398,7 +456,7 @@
             color: var(--border-ornate);
         }
 
-        .book-description {
+        .series-description {
             font-family: 'Cormorant Garamond', serif;
             font-size: 1.1rem;
             line-height: 1.75;
@@ -407,13 +465,29 @@
             hyphens: auto;
         }
 
-        .book-description p {
+        .series-description p {
             margin-bottom: 1rem;
             text-indent: 2rem;
         }
 
-        .book-description p:first-child {
+        .series-description p:first-child {
             text-indent: 0;
+        }
+
+        .character-intro {
+            margin: 1.5rem 0;
+            padding-left: 1rem;
+            border-left: 3px solid var(--gold);
+        }
+
+        .character-intro p {
+            text-indent: 0 !important;
+            margin-bottom: 0.75rem;
+        }
+
+        .character-name {
+            font-weight: 600;
+            color: var(--wood-dark);
         }
 
         .cta-buttons {
@@ -491,6 +565,7 @@
             margin-bottom: 2rem;
         }
 
+        /* Newsletter Signup - Elegant Inline */
         .newsletter-signup {
             margin: 2rem auto;
             max-width: 500px;
@@ -568,15 +643,36 @@
             text-decoration: underline;
         }
 
+        @media (max-width: 500px) {
+            .newsletter-form {
+                flex-direction: column;
+            }
+
+            .newsletter-btn {
+                border-left: none;
+                border-top: 1px solid var(--border-ornate);
+            }
+        }
+
         /* RESPONSIVE */
+        @media (max-width: 1200px) {
+            .split-right {
+                padding: 2rem;
+            }
+        }
+
         @media (max-width: 1024px) {
-            main {
+            .main-content {
                 flex-direction: column;
             }
 
             .split-left {
                 min-height: auto;
                 padding: 2rem 1rem;
+            }
+
+            .celtic-frame {
+                max-width: 500px;
             }
 
             .split-right {
@@ -643,8 +739,16 @@
                 font-size: 0.9rem;
             }
 
-            .character-frame {
-                max-width: 320px;
+            .hero-placeholder {
+                min-height: 280px;
+            }
+
+            .hero-placeholder .hero-title {
+                letter-spacing: 0.15em;
+            }
+
+            .celtic-frame {
+                padding: 1rem;
             }
 
             .scroll-content {
@@ -652,10 +756,10 @@
             }
 
             .innatraea-logo {
-                max-width: 260px;
+                max-width: 280px;
             }
 
-            .book-description {
+            .series-description {
                 font-size: 1rem;
             }
 
@@ -667,23 +771,6 @@
                 width: 100%;
                 text-align: center;
             }
-
-            .book-covers {
-                gap: 0.75rem;
-            }
-
-            .book-cover {
-                width: 80px;
-            }
-
-            .newsletter-form {
-                flex-direction: column;
-            }
-
-            .newsletter-btn {
-                border-left: none;
-                border-top: 1px solid var(--border-ornate);
-            }
         }
     </style>
 </head>
@@ -691,10 +778,8 @@
     <header>
         <nav>
             <div class="logo-container">
-                <a href="../index.html">
-                    <img src="https://static.wixstatic.com/media/24d929_ec1678b4b3f847a89f0e52934fc8222b~mv2.jpeg" alt="Innatraea" class="logo-img">
-                    <span class="site-title">Innatraea Site Menu</span>
-                </a>
+                <img src="https://static.wixstatic.com/media/24d929_ec1678b4b3f847a89f0e52934fc8222b~mv2.jpeg" alt="Innatraea" class="logo-img">
+                <span class="site-title">Innatraea Site Menu</span>
             </div>
 
             <button class="nav-toggle" aria-label="Toggle navigation" onclick="toggleNav()">
@@ -705,7 +790,7 @@
 
             <ul class="nav-menu" id="navMenu">
                 <li class="nav-item">
-                    <a href="../index.html" class="nav-link">Home</a>
+                    <a href="index.html" class="nav-link">Home</a>
                 </li>
                 <li class="nav-item">
                     <a href="https://www.amazon.com/dp/B0DTBSX5QQ" class="nav-link" target="_blank">Buy Novellas</a>
@@ -714,43 +799,43 @@
                     <a href="https://shop.ingramspark.com/b/084?params=mUsKM3cMiNJQ4zNQkwkjDeq8GHLjFdWTujr4EtppocK" class="nav-link" target="_blank">Buy Adventure</a>
                 </li>
                 <li class="nav-item">
-                    <a href="maps.html" class="nav-link">Maps</a>
+                    <a href="pages/maps.html" class="nav-link">Maps</a>
                 </li>
                 <li class="nav-item">
                     <a href="#" class="nav-link" onclick="toggleDropdown(event, this)">Novellas <span class="arrow">▼</span></a>
                     <ul class="dropdown">
-                        <li><a href="novella-one.html">One: Small Footsteps</a></li>
-                        <li><a href="novella-two.html">Two: Am'ayim</a></li>
-                        <li><a href="novella-three.html">Three: Road to Bethseda</a></li>
-                        <li><a href="novella-four.html">Four: Haitasi</a></li>
+                        <li><a href="pages/novella-one.html">One: Small Footsteps</a></li>
+                        <li><a href="pages/novella-two.html">Two: Am'ayim</a></li>
+                        <li><a href="pages/novella-three.html">Three: Road to Bethseda</a></li>
+                        <li><a href="pages/novella-four.html">Four: Haitasi</a></li>
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a href="adventures.html" class="nav-link">Adventures</a>
+                    <a href="pages/adventures.html" class="nav-link">Adventures</a>
                 </li>
                 <li class="nav-item">
                     <a href="#" class="nav-link" onclick="toggleDropdown(event, this)">Short Stories <span class="arrow">▼</span></a>
                     <ul class="dropdown">
-                        <li><a href="../assets/pdfs/short-stories/scent-of-innocence-fall-2023.pdf" target="_blank">Scent of Innocence Fall 2023</a></li>
-                        <li><a href="../assets/pdfs/short-stories/koliada-winter-2023.pdf" target="_blank">Koliada (Festival of Lights) Winter 2023</a></li>
-                        <li><a href="../assets/pdfs/short-stories/sakturia-spring-2024.pdf" target="_blank">Sakturia (Festival of Water and Light) Spring 2024</a></li>
-                        <li><a href="../assets/pdfs/short-stories/vardavar-summer-2024.pdf" target="_blank">Vardavar (Festival of Rose and Water) Summer 2024</a></li>
-                        <li><a href="../assets/pdfs/short-stories/praznik-na-vrani-fall-2024.pdf" target="_blank">Praznik na Vrani (Feast of Crows) Fall 2024</a></li>
-                        <li><a href="../assets/pdfs/short-stories/geohhol-winter-2024.pdf" target="_blank">Geohhol (Festival of Feast and Fire) Winter 2024</a></li>
-                        <li><a href="../assets/pdfs/short-stories/tzipcanu-spring-2025.pdf" target="_blank">Tzipcanu (Bird Festival) Spring 2025</a></li>
-                        <li><a href="../assets/pdfs/short-stories/gogi-asherah-summer-2025.pdf" target="_blank">Gogi Asherah (Summer of Asherah) Summer 2025</a></li>
-                        <li><a href="../assets/pdfs/short-stories/tlailli-mahuizotl-fall-2025.pdf" target="_blank">Tlailli Mahuizotl (Celebration of Pain) Fall 2025</a></li>
-                        <li><a href="../assets/pdfs/short-stories/lumresca-winter-2025.pdf" target="_blank">Lumresca (Festival of Light and Rebirth) Winter 2025</a></li>
+                        <li><a href="assets/pdfs/short-stories/scent-of-innocence-fall-2023.pdf" target="_blank">Scent of Innocence Fall 2023</a></li>
+                        <li><a href="assets/pdfs/short-stories/koliada-winter-2023.pdf" target="_blank">Koliada (Festival of Lights) Winter 2023</a></li>
+                        <li><a href="assets/pdfs/short-stories/sakturia-spring-2024.pdf" target="_blank">Sakturia (Festival of Water and Light) Spring 2024</a></li>
+                        <li><a href="assets/pdfs/short-stories/vardavar-summer-2024.pdf" target="_blank">Vardavar (Festival of Rose and Water) Summer 2024</a></li>
+                        <li><a href="assets/pdfs/short-stories/praznik-na-vrani-fall-2024.pdf" target="_blank">Praznik na Vrani (Feast of Crows) Fall 2024</a></li>
+                        <li><a href="assets/pdfs/short-stories/geohhol-winter-2024.pdf" target="_blank">Geohhol (Festival of Feast and Fire) Winter 2024</a></li>
+                        <li><a href="assets/pdfs/short-stories/tzipcanu-spring-2025.pdf" target="_blank">Tzipcanu (Bird Festival) Spring 2025</a></li>
+                        <li><a href="assets/pdfs/short-stories/gogi-asherah-summer-2025.pdf" target="_blank">Gogi Asherah (Summer of Asherah) Summer 2025</a></li>
+                        <li><a href="assets/pdfs/short-stories/tlailli-mahuizotl-fall-2025.pdf" target="_blank">Tlailli Mahuizotl (Celebration of Pain) Fall 2025</a></li>
+                        <li><a href="assets/pdfs/short-stories/lumresca-winter-2025.pdf" target="_blank">Lumresca (Festival of Light and Rebirth) Winter 2025</a></li>
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a href="mira-vox.html" class="nav-link">Mira Vox</a>
+                    <a href="pages/mira-vox.html" class="nav-link">Mira Vox</a>
                 </li>
                 <li class="nav-item">
                     <a href="#" class="nav-link" onclick="toggleDropdown(event, this)">Poetry <span class="arrow">▼</span></a>
                     <ul class="dropdown">
-                        <li><a href="../assets/pdfs/poetry/a-soft-chaos.pdf" target="_blank">A Soft Chaos</a></li>
-                        <li><a href="../assets/pdfs/poetry/the-game-of-hope-and-despair.pdf" target="_blank">The Game of Hope and Despair</a></li>
+                        <li><a href="assets/pdfs/poetry/a-soft-chaos.pdf" target="_blank">A Soft Chaos</a></li>
+                        <li><a href="assets/pdfs/poetry/the-game-of-hope-and-despair.pdf" target="_blank">The Game of Hope and Despair</a></li>
                     </ul>
                 </li>
                 <li class="nav-item">
@@ -774,61 +859,96 @@
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a href="author.html" class="nav-link">Author</a>
+                    <a href="pages/author.html" class="nav-link">Author</a>
                 </li>
             </ul>
         </nav>
     </header>
 
-    <main>
-        <section class="split-left">
-            <div class="character-art-container">
-                <div class="character-frame">
-                    <!-- Replace with local asset: ../assets/images/novella-one-cover.jpg -->
-                    <img src="https://static.wixstatic.com/media/24d929_cdcde7c47d4744ad9634c094d334cb02~mv2.jpg/v1/fill/w_948,h_1393,al_b,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/24d929_cdcde7c47d4744ad9634c094d334cb02~mv2.jpg" alt="Novella One: Small Footsteps" class="character-image">
-                </div>
+    <!-- HERO BANNER - Swap this for each novella release -->
+    <section class="hero-banner">
+        <!-- Replace with actual banner image -->
+        <div class="hero-placeholder">
+            <img src="https://static.wixstatic.com/media/24d929_5e395f80a9d84dda82d68815b4589d71~mv2.png" alt="INNATRAEA" class="hero-logo">
+            <span class="hero-title">NOVELLA THREE: ROAD TO BETHSEDA</span>
+            <img src="https://static.wixstatic.com/media/24d929_ec1678b4b3f847a89f0e52934fc8222b~mv2.jpeg" alt="" class="hero-seal">
+        </div>
+        <!-- 
+        <img src="assets/novellathreebanner.jpg" alt="Innatraea">
+        -->
+    </section>
 
-                <div class="book-covers">
-                    <!-- Front cover - links to Amazon -->
-                    <a href="https://www.amazon.com/Innatraea-Novella-One-Small-Footsteps-ebook/dp/B0DT9DFQWZ" target="_blank" title="Buy Now">
-                        <img src="https://static.wixstatic.com/media/24d929_cdcde7c47d4744ad9634c094d334cb02~mv2.jpg" alt="Small Footsteps Ebook" class="book-cover">
-                    </a>
-                    <!-- Back cover - links to Preview PDF -->
-                    <a href="https://www.innatraea.com/_files/ugd/24d929_65500f663d22482bb909595a7c73f7be.pdf" target="_blank" title="Read Preview">
-                        <img src="https://static.wixstatic.com/media/24d929_f2ac9aefd9fe47e2b88ec28918d45fb2~mv2.jpg" alt="Small Footsteps - Read Preview" class="book-cover">
-                    </a>
+    <!-- MAIN SPLIT CONTENT -->
+    <main class="main-content">
+        <section class="split-left">
+            <div class="celtic-frame">
+                <div class="frame-content">
+                    <div class="video-container">
+                        <!-- Promo video goes here -->
+                        <div class="video-placeholder">
+                            <span>[ Promo Video ]</span>
+                        </div>
+                        <!-- 
+                        <video autoplay muted loop playsinline>
+                            <source src="assets/video/promo.mp4" type="video/mp4">
+                        </video>
+                        -->
+                    </div>
                 </div>
             </div>
+            
+            <div class="social-links">
+                <a href="mailto:innatraea@gmail.com" class="social-link" title="Email">
+                    <img src="https://static.wixstatic.com/media/24d929_86f18f96151d4bdb9ab2ae7b5b43eb7d~mv2.png" alt="Email">
+                </a>
+                <a href="https://www.instagram.com/innatraea/" class="social-link" title="Instagram" target="_blank">
+                    <img src="https://static.wixstatic.com/media/11062b_55e4be1e75564866b6c28290f9a9d271~mv2.png" alt="Instagram">
+                </a>
+                <a href="https://twitter.com/Kurokojin" class="social-link" title="X / Twitter" target="_blank">
+                    <img src="https://static.wixstatic.com/media/11062b_bc7125385fcf422cad29fbe20a2b237c~mv2.png" alt="X">
+                </a>
+                <a href="https://t.co/eONvCdvUUZ" class="social-link" title="Discord" target="_blank">
+                    <img src="https://static.wixstatic.com/media/11062b_5786213245914dde873f6b286a16854c~mv2.png" alt="Discord">
+                </a>
+                <a href="https://www.amazon.com/stores/E.R.-Zaugg/author/B0DTB4B7K9" class="social-link" title="Amazon" target="_blank">
+                    <img src="https://static.wixstatic.com/media/11062b_725eaa1f4f174cf08856381fa94d0483~mv2.png" alt="Amazon">
+                </a>
+            </div>
+
+            <!-- Wax Seal - swap with local asset: assets/images/wax-seal.png -->
+            <img src="https://static.wixstatic.com/media/24d929_86f18f96151d4bdb9ab2ae7b5b43eb7d~mv2.png" alt="" class="wax-seal">
         </section>
 
         <section class="split-right">
             <div class="scroll-content">
                 <img src="https://static.wixstatic.com/media/24d929_5e395f80a9d84dda82d68815b4589d71~mv2.png" alt="INNATRAEA" class="innatraea-logo">
                 
-                <p class="novella-title">Novella One: Small Footsteps</p>
-
-                <div class="book-taglines">
-                    <p>Magic is in her blood…</p>
-                    <p>The destiny of Innatraea is in her hands…</p>
-                    <p>Can she rise to power, or will the forces against her prevail?</p>
-                </div>
+                <p class="series-subtitle">Innatraea: An Epic Fantasy Saga of Destiny, Sacrifice, and Love</p>
 
                 <p class="tavid-quote">
                     "Every legend begins with the small footsteps of ordinary Innatraeans."
                     <cite>— Tavid the Traveler</cite>
                 </p>
 
-                <div class="book-description">
-                    <p>Rosalie Sharone, one of the strongest magic wielders ever born, has been waiting and training for this moment all her life. Orphaned as a baby, the child prodigy was raised in the small farm town of Aliselle Falls, away from suspecting eyes. Now she is a young woman ready to fulfill her destiny by traveling across Innatraea to become an initiate of The Weavers, an ancient and powerful order of women who shape the very fabric of magic itself.</p>
+                <div class="series-description">
+                    <p>Step into Innatraea, a world where magic shapes fate and women — Weavers, warriors, matriarchs, and queens — stand at the center of power. Across diverse kingdoms and ancient realms, sentient mythical creatures walk alongside humanity, cultures clash and intertwine, and secrets buried for generations rise to change everything.</p>
                     
-                    <p>But the path to power is never simple. As Rosalie journeys toward her future, she will encounter allies who challenge everything she believes, enemies who wear the faces of friends, and secrets about her own past that could unravel the fate of kingdoms.</p>
+                    <p>At its heart are three childhood friends from the quiet farm town of Aliselle Falls, each called to a different destiny:</p>
 
-                    <p>In a world where women hold the threads of power and ancient prophecies stir in forgotten bloodlines, one young woman's small footsteps may echo across eternity.</p>
+                    <div class="character-intro">
+                        <p><span class="character-name">Rosalie Sharone,</span> a Weaver prodigy of unmatched power, journeys to join an ancient order that could make her the most powerful woman in Innatraea — or destroy everything she loves.</p>
+                        
+                        <p><span class="character-name">Ariela Marelda,</span> a warrior born to the sea, must navigate treacherous waters of politics and prejudice as she fights to prove herself in a world that sees her as less than human.</p>
+                        
+                        <p><span class="character-name">Jonaas Al'Shane,</span> a simple farm boy with a hidden past, discovers that the truth of his birth could reshape the fate of an ancient, dying race — if it doesn't kill him first.</p>
+                    </div>
+
+                    <p>Their paths diverge across kingdoms, oceans, and realms beyond time itself. But destiny has woven their fates together, and what they discover will challenge everything they believe about magic, sacrifice, and what it truly means to love.</p>
                 </div>
 
                 <div class="cta-buttons">
-                    <a href="https://www.amazon.com/Innatraea-Novella-One-Small-Footsteps-ebook/dp/B0DT9DFQWZ" class="cta-btn primary" target="_blank">Buy Now</a>
-                    <a href="https://www.innatraea.com/_files/ugd/24d929_65500f663d22482bb909595a7c73f7be.pdf" class="cta-btn" target="_blank">Read Preview</a>
+                    <a href="https://www.amazon.com/dp/B0DTBSX5QQ" class="cta-btn primary" target="_blank">Begin the Journey</a>
+                    <a href="pages/novella-one.html" class="cta-btn">Explore the World</a>
                 </div>
             </div>
         </section>
@@ -848,7 +968,7 @@
                 </form>
             </div>
 
-            <p class="footer-credit">Built by <a href="mira-vox.html">Mira Vox</a></p>
+            <p class="footer-credit">Built by <a href="pages/mira-vox.html">Mira Vox</a></p>
         </div>
     </footer>
 

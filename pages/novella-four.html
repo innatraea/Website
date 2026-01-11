@@ -106,7 +106,7 @@
         .character-image { width: 100%; height: auto; display: block; box-shadow: 0 0 0 3px var(--border-ornate); }
 
         .book-covers { display: flex; gap: 1rem; margin-top: 2rem; justify-content: center; }
-        .book-cover { width: 100px; height: auto; box-shadow: 0 4px 15px rgba(0,0,0,0.5), 0 0 0 2px var(--border-ornate); transition: transform 0.3s ease; }
+        .book-cover { width: 100px; height: auto; box-shadow: 0 4px 15px rgba(0,0,0,0.5); transition: transform 0.3s ease; }
         .book-cover:hover { transform: translateY(-5px); }
 
         .split-right {
@@ -283,7 +283,7 @@
 
                 <div class="book-covers">
                     <!-- Front cover - links to Amazon -->
-                    <a href="https://www.amazon.com/dp/B0DTBSX5QQ" target="_blank" title="Pre-Order Now">
+                    <a href="../assets/preview4.pdf" target="_blank" title="Read Preview">
                         <img src="https://static.wixstatic.com/media/24d929_a5c6bb82ae75466dbb78bb6aa3d5f449~mv2.jpg/v1/fill/w_948,h_1439,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/24d929_a5c6bb82ae75466dbb78bb6aa3d5f449~mv2.jpg" alt="Haitasi Ebook" class="book-cover">
                     </a>
                     <!-- Back cover - links to Preview PDF (uncomment when available)
@@ -324,10 +324,7 @@
                 </div>
 
                 <div class="cta-buttons">
-                    <a href="https://www.amazon.com/dp/B0DTBSX5QQ" class="cta-btn primary" target="_blank">Pre-Order Now</a>
-                    <!-- Add preview button when PDF available
-                    <a href="PREVIEW_PDF_URL" class="cta-btn" target="_blank">Read Preview</a>
-                    -->
+                    <a href="../assets/preview4.pdf" class="cta-btn primary" target="_blank">Read Preview</a>
                 </div>
             </div>
         </section>
