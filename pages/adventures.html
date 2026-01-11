@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adventures Book One: Friends | Innatraea</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #1a1510;
+            --bg-frame: #2a1f14;
+            --parchment: #e8dcc4;
+            --parchment-dark: #d4c4a8;
+            --gold: #c9a227;
+            --gold-light: #e8c547;
+            --text-dark: #2a1f14;
+            --text-light: #f5f0e6;
+            --border-ornate: #8b7355;
+            --wood-dark: #3d2b1f;
+            --wood-light: #5c4033;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            background: var(--bg-dark);
+            color: var(--text-light);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: var(--bg-dark);
+            padding: 0.75rem 2rem;
+            border-bottom: 1px solid var(--border-ornate);
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        .logo-container { display: flex; align-items: center; gap: 1rem; }
+        .logo-container a { display: flex; align-items: center; gap: 1rem; text-decoration: none; }
+        .logo-img { height: 50px; width: auto; }
+        .site-title { font-family: 'Cinzel', serif; font-size: 1.1rem; font-weight: 500; letter-spacing: 0.1em; color: var(--parchment); }
+
+        .nav-toggle { display: none; background: none; border: none; cursor: pointer; padding: 0.5rem; }
+        .nav-toggle span { display: block; width: 25px; height: 2px; background: var(--parchment); margin: 5px 0; transition: 0.3s; }
+
+        .nav-menu { display: flex; list-style: none; gap: 0.25rem; }
+        .nav-item { position: relative; }
+        .nav-link { font-family: 'Cinzel', serif; font-size: 0.7rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--parchment); text-decoration: none; padding: 0.5rem 0.6rem; transition: color 0.3s ease; display: flex; align-items: center; gap: 0.25rem; white-space: nowrap; }
+        .nav-link:hover { color: var(--gold-light); }
+        .nav-link .arrow { font-size: 0.5rem; transition: transform 0.3s ease; }
+        .nav-item:hover .arrow { transform: rotate(180deg); }
+
+        .dropdown { position: absolute; top: 100%; left: 0; background: var(--bg-dark); border: 1px solid var(--border-ornate); border-top: 2px solid var(--gold); min-width: 200px; opacity: 0; visibility: hidden; transform: translateY(-10px); transition: all 0.3s ease; list-style: none; z-index: 100; }
+        .nav-item:hover .dropdown { opacity: 1; visibility: visible; transform: translateY(0); }
+        .dropdown li a { display: block; padding: 0.75rem 1rem; font-family: 'Cormorant Garamond', serif; font-size: 0.95rem; color: var(--parchment); text-decoration: none; border-bottom: 1px solid rgba(139,115,85,0.3); transition: all 0.3s ease; }
+        .dropdown li:last-child a { border-bottom: none; }
+        .dropdown li a:hover { background: rgba(201,162,39,0.15); color: var(--gold-light); padding-left: 1.25rem; }
+
+        /* MAIN CONTENT - SPLIT VIEW */
+        main { min-height: 100vh; display: flex; margin-top: 70px; }
+
+        .split-left {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            background: var(--bg-dark);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cover-art-container { position: relative; width: 100%; max-width: 600px; display: flex; flex-direction: column; align-items: center; }
+
+        /* Landscape frame for Adventures cover */
+        .cover-frame {
+            position: relative;
+            width: 100%;
+            max-width: 550px;
+            background: repeating-linear-gradient(90deg, var(--wood-dark) 0px, var(--wood-light) 2px, var(--wood-dark) 4px), linear-gradient(180deg, var(--wood-dark) 0%, #2a1a10 100%);
+            border: 12px solid;
+            border-image: repeating-linear-gradient(45deg, var(--border-ornate) 0px, var(--gold) 8px, var(--border-ornate) 16px, #5c4a3a 24px, var(--border-ornate) 32px) 12;
+            box-shadow: inset 0 0 30px rgba(0,0,0,0.5), 0 0 30px rgba(0,0,0,0.6), 0 15px 50px rgba(0,0,0,0.5);
+            padding: 0.75rem;
+        }
+
+        .cover-frame::before, .cover-frame::after { content: ''; position: absolute; width: 40px; height: 40px; border: 2px solid var(--gold); opacity: 0.5; z-index: 3; }
+        .cover-frame::before { top: 18px; left: 18px; border-right: none; border-bottom: none; }
+        .cover-frame::after { bottom: 18px; right: 18px; border-left: none; border-top: none; }
+        .cover-image { width: 100%; height: auto; display: block; box-shadow: 0 0 0 3px var(--border-ornate); }
+
+        .book-title {
+            font-family: 'Cinzel', serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--parchment);
+            text-align: center;
+            margin-top: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .cta-buttons-left {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cta-btn {
+            font-family: 'Cinzel', serif;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            text-decoration: none;
+            padding: 0.875rem 1.75rem;
+            border: 2px solid var(--parchment);
+            color: var(--parchment);
+            background: transparent;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .cta-btn:hover {
+            background: var(--parchment);
+            color: var(--bg-dark);
+        }
+
+        .cta-btn.primary {
+            background: var(--gold);
+            border-color: var(--gold);
+            color: var(--bg-dark);
+        }
+
+        .cta-btn.primary:hover {
+            background: var(--gold-light);
+            border-color: var(--gold-light);
+        }
+
+        /* RIGHT SIDE - BACK COVER ART */
+        .split-right {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+            background: 
+                url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><circle cx="30" cy="40" r="1" fill="%23b4a488" opacity="0.15"/><circle cx="120" cy="80" r="1.5" fill="%23a49478" opacity="0.1"/><circle cx="170" cy="150" r="1" fill="%23c4b498" opacity="0.12"/><circle cx="60" cy="180" r="0.8" fill="%23b4a488" opacity="0.1"/></svg>'),
+                linear-gradient(135deg, #e8dcc4 0%, #ddd0b8 25%, #d4c4a8 50%, #ddd0b8 75%, #e8dcc4 100%);
+            background-size: 200px 200px, 100% 100%;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        .split-right::before { content: ''; position: absolute; top: 0; left: 0; bottom: 0; width: 30px; background: linear-gradient(90deg, rgba(139,115,85,0.4) 0%, rgba(139,115,85,0.1) 50%, transparent 100%); pointer-events: none; }
+
+        .back-cover-container {
+            max-width: 600px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .back-cover-frame {
+            position: relative;
+            width: 100%;
+            background: repeating-linear-gradient(90deg, var(--wood-dark) 0px, var(--wood-light) 2px, var(--wood-dark) 4px), linear-gradient(180deg, var(--wood-dark) 0%, #2a1a10 100%);
+            border: 10px solid;
+            border-image: repeating-linear-gradient(45deg, var(--border-ornate) 0px, var(--gold) 8px, var(--border-ornate) 16px, #5c4a3a 24px, var(--border-ornate) 32px) 10;
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.4), 0 0 20px rgba(0,0,0,0.3), 0 10px 40px rgba(0,0,0,0.3);
+            padding: 0.5rem;
+        }
+
+        .back-cover-frame::before, .back-cover-frame::after { content: ''; position: absolute; width: 30px; height: 30px; border: 2px solid var(--gold); opacity: 0.4; z-index: 3; }
+        .back-cover-frame::before { top: 14px; left: 14px; border-right: none; border-bottom: none; }
+        .back-cover-frame::after { bottom: 14px; right: 14px; border-left: none; border-top: none; }
+
+        .back-cover-image {
+            width: 100%;
+            height: auto;
+            display: block;
+            box-shadow: 0 0 0 2px var(--border-ornate);
+        }
+
+        .illustrator-credit {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1rem;
+            font-style: italic;
+            color: var(--text-dark);
+            text-align: center;
+            margin-top: 1.5rem;
+        }
+
+        .illustrator-credit a {
+            color: var(--border-ornate);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .illustrator-credit a:hover {
+            color: var(--gold);
+        }
+
+        /* Footer */
+        footer { background: var(--bg-dark); border-top: 2px solid var(--border-ornate); padding: 3rem 2rem; }
+        .footer-content { max-width: 900px; margin: 0 auto; text-align: center; }
+        .footer-logo { height: 80px; margin-bottom: 1.25rem; opacity: 0.9; }
+        .footer-company { font-family: 'Cinzel', serif; font-size: 1.1rem; font-weight: 500; color: var(--parchment); margin-bottom: 0.25rem; letter-spacing: 0.08em; }
+        .footer-copyright { font-family: 'Cormorant Garamond', serif; font-size: 0.9rem; color: var(--parchment); opacity: 0.6; margin-bottom: 2rem; }
+
+        .newsletter-signup { margin: 2rem auto; max-width: 500px; }
+        .newsletter-signup h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-weight: 500; font-style: italic; color: var(--parchment); margin-bottom: 1rem; opacity: 0.9; }
+        .newsletter-form { display: flex; gap: 0; border: 1px solid var(--border-ornate); background: rgba(232,220,196,0.08); }
+        .newsletter-input { flex: 1; padding: 0.875rem 1.25rem; font-family: 'Cormorant Garamond', serif; font-size: 1rem; border: none; background: transparent; color: var(--parchment); outline: none; }
+        .newsletter-input::placeholder { color: var(--border-ornate); opacity: 0.7; }
+        .newsletter-btn { padding: 0.875rem 1.5rem; font-family: 'Cinzel', serif; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; background: var(--border-ornate); color: var(--parchment); border: none; border-left: 1px solid var(--border-ornate); cursor: pointer; transition: all 0.3s ease; white-space: nowrap; }
+        .newsletter-btn:hover { background: var(--gold); color: var(--text-dark); }
+
+        .footer-credit { font-family: 'Cormorant Garamond', serif; font-size: 0.85rem; font-style: italic; color: var(--gold); opacity: 0.9; margin-top: 2rem; }
+        .footer-credit a { color: var(--gold-light); text-decoration: none; }
+        .footer-credit a:hover { text-decoration: underline; }
+
+        @media (max-width: 1024px) {
+            main { flex-direction: column; }
+            .split-left { min-height: auto; padding: 2rem 1rem; }
+            .split-right { min-height: auto; padding: 2rem 1rem; }
+            .nav-toggle { display: block; }
+            .nav-menu { position: fixed; top: 0; right: -100%; width: 280px; height: 100vh; background: var(--bg-dark); flex-direction: column; padding: 5rem 2rem 2rem; transition: right 0.3s ease; border-left: 1px solid var(--border-ornate); overflow-y: auto; }
+            .nav-menu.active { right: 0; }
+            .nav-link { font-size: 0.85rem; padding: 0.75rem 0; }
+            .dropdown { position: static; opacity: 1; visibility: visible; transform: none; background: transparent; border: none; padding-left: 1rem; max-height: 0; overflow: hidden; transition: max-height 0.3s ease; }
+            .nav-item.open .dropdown { max-height: 500px; }
+            .dropdown li a { padding: 0.5rem 0; border-bottom: none; }
+        }
+
+        @media (max-width: 600px) {
+            header { padding: 0.75rem 1rem; }
+            .site-title { font-size: 0.9rem; }
+            .cover-frame { max-width: 350px; }
+            .back-cover-frame { max-width: 350px; }
+            .cta-buttons-left { flex-direction: column; }
+            .cta-btn { width: 100%; text-align: center; }
+            .newsletter-form { flex-direction: column; }
+            .newsletter-btn { border-left: none; border-top: 1px solid var(--border-ornate); }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo-container">
+                <a href="../index.html">
+                    <img src="https://static.wixstatic.com/media/24d929_ec1678b4b3f847a89f0e52934fc8222b~mv2.jpeg" alt="Innatraea" class="logo-img">
+                    <span class="site-title">Innatraea Site Menu</span>
+                </a>
+            </div>
+
+            <button class="nav-toggle" aria-label="Toggle navigation" onclick="toggleNav()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <ul class="nav-menu" id="navMenu">
+                <li class="nav-item"><a href="../index.html" class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="https://www.amazon.com/dp/B0DTBSX5QQ" class="nav-link" target="_blank">Buy Novellas</a></li>
+                <li class="nav-item"><a href="https://shop.ingramspark.com/b/084?params=mUsKM3cMiNJQ4zNQkwkjDeq8GHLjFdWTujr4EtppocK" class="nav-link" target="_blank">Buy Adventure</a></li>
+                <li class="nav-item">
+                    <a href="maps.html" class="nav-link">Maps</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link" onclick="toggleDropdown(event, this)">Novellas <span class="arrow">▼</span></a>
+                    <ul class="dropdown">
+                        <li><a href="novella-one.html">One: Small Footsteps</a></li>
+                        <li><a href="novella-two.html">Two: Am'ayim</a></li>
+                        <li><a href="novella-three.html">Three: Road to Bethseda</a></li>
+                        <li><a href="novella-four.html">Four: Haitasi</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item"><a href="adventures.html" class="nav-link">Adventures</a></li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link" onclick="toggleDropdown(event, this)">Short Stories <span class="arrow">▼</span></a>
+                    <ul class="dropdown">
+                        <li><a href="../assets/pdfs/short-stories/scent-of-innocence-fall-2023.pdf" target="_blank">Scent of Innocence Fall 2023</a></li>
+                        <li><a href="../assets/pdfs/short-stories/koliada-winter-2023.pdf" target="_blank">Koliada (Festival of Lights) Winter 2023</a></li>
+                        <li><a href="../assets/pdfs/short-stories/sakturia-spring-2024.pdf" target="_blank">Sakturia (Festival of Water and Light) Spring 2024</a></li>
+                        <li><a href="../assets/pdfs/short-stories/vardavar-summer-2024.pdf" target="_blank">Vardavar (Festival of Rose and Water) Summer 2024</a></li>
+                        <li><a href="../assets/pdfs/short-stories/praznik-na-vrani-fall-2024.pdf" target="_blank">Praznik na Vrani (Feast of Crows) Fall 2024</a></li>
+                        <li><a href="../assets/pdfs/short-stories/geohhol-winter-2024.pdf" target="_blank">Geohhol (Festival of Feast and Fire) Winter 2024</a></li>
+                        <li><a href="../assets/pdfs/short-stories/tzipcanu-spring-2025.pdf" target="_blank">Tzipcanu (Bird Festival) Spring 2025</a></li>
+                        <li><a href="../assets/pdfs/short-stories/gogi-asherah-summer-2025.pdf" target="_blank">Gogi Asherah (Summer of Asherah) Summer 2025</a></li>
+                        <li><a href="../assets/pdfs/short-stories/tlailli-mahuizotl-fall-2025.pdf" target="_blank">Tlailli Mahuizotl (Celebration of Pain) Fall 2025</a></li>
+                        <li><a href="../assets/pdfs/short-stories/lumresca-winter-2025.pdf" target="_blank">Lumresca (Festival of Light and Rebirth) Winter 2025</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item"><a href="mira-vox.html" class="nav-link">Mira Vox</a></li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link" onclick="toggleDropdown(event, this)">Poetry <span class="arrow">▼</span></a>
+                    <ul class="dropdown">
+                        <li><a href="../assets/pdfs/poetry/a-soft-chaos.pdf" target="_blank">A Soft Chaos</a></li>
+                        <li><a href="../assets/pdfs/poetry/the-game-of-hope-and-despair.pdf" target="_blank">The Game of Hope and Despair</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link" onclick="toggleDropdown(event, this)">More <span class="arrow">▼</span></a>
+                    <ul class="dropdown">
+                        <li><a href="https://www.fiverr.com/s/bdWakgm" target="_blank">Find me on Fiverr</a></li>
+                        <li><a href="https://sentx.io/nft-marketplace/innatraea-asherah-trees" target="_blank">Asherah Trees</a></li>
+                        <li><a href="https://sentx.io/nft-marketplace/creators/innatraea" target="_blank">Hedera Art Collections</a></li>
+                        <li><a href="https://objkt.com/@innatraea" target="_blank">Tezos Art Collections</a></li>
+                        
+                    </ul>
+                </li>
+                                <li class="nav-item">
+                    <a href="#" class="nav-link" onclick="toggleDropdown(event, this)">Partners <span class="arrow">▼</span></a>
+                    <ul class="dropdown">
+                        <li><a href="https://quietinternet.com/" target="_blank">Quiet Internet</a></li>
+                        <li><a href="https://mirrorize.ai/" target="_blank">Mirrorize AI</a></li>
+                        <li><a href="https://www.futuritygalaxies.com/" target="_blank">Futurity Galaxies</a></li>
+                        <li><a href="https://hhw3.org/mzqcnuvp/" target="_blank">H3x (Helping Hands of Web3)</a></li>
+                        <li><a href="https://x.com/hydroyeti" target="_blank">Hydrolabs</a></li>
+                        <li><a href="https://x.com/FreeArtMind" target="_blank">Fam@Play</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item"><a href="author.html" class="nav-link">Author</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="split-left">
+            <div class="cover-art-container">
+                <div class="cover-frame">
+                    <img src="https://static.wixstatic.com/media/24d929_56da57e263424cdaab3d7eca96c9c6ce~mv2.jpg/v1/fill/w_948,h_659,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/24d929_56da57e263424cdaab3d7eca96c9c6ce~mv2.jpg" alt="Adventures Book One: Friends - Front Cover" class="cover-image">
+                </div>
+
+                <h1 class="book-title">Adventures Book One: Friends</h1>
+
+                <div class="cta-buttons-left">
+                    <a href="https://www.amazon.com/Innatraea-Adventures-Book-One-Friends/dp/B0DXJXGQLR" class="cta-btn primary" target="_blank">Buy on Amazon</a>
+                    <a href="https://shop.ingramspark.com/b/084?params=mUsKM3cMiNJQ4zNQkwkjDeq8GHLjFdWTujr4EtppocK" class="cta-btn" target="_blank">Buy from Publisher</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="split-right">
+            <div class="back-cover-container">
+                <div class="back-cover-frame">
+                    <img src="https://static.wixstatic.com/media/24d929_01f725bcd24a499f9227231e25e14338~mv2.jpg/v1/fill/w_950,h_659,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/24d929_01f725bcd24a499f9227231e25e14338~mv2.jpg" alt="Adventures Book One: Friends - Back Cover Art" class="back-cover-image">
+                </div>
+
+                <p class="illustrator-credit">Illustrated by <a href="https://x.com/artyxssss" target="_blank">@artyxssss</a></p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <img src="https://static.wixstatic.com/media/24d929_ec1678b4b3f847a89f0e52934fc8222b~mv2.jpeg" alt="Innatraea" class="footer-logo">
+            <p class="footer-company">Innatraea, LLC | 2025</p>
+            <p class="footer-copyright">© 2025 by Innatraea</p>
+
+            <div class="newsletter-signup">
+                <h3>Become an Innatraean</h3>
+                <form class="newsletter-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+                    <input type="email" name="email" class="newsletter-input" placeholder="Enter your email" required>
+                    <button type="submit" class="newsletter-btn">Subscribe</button>
+                </form>
+            </div>
+
+            <p class="footer-credit">Built by <a href="mira-vox.html">Mira Vox</a></p>
+        </div>
+    </footer>
+
+    <script>
+        function toggleNav() { document.getElementById('navMenu').classList.toggle('active'); }
+        function toggleDropdown(e, element) { if (window.innerWidth <= 1024) { e.preventDefault(); element.closest('.nav-item').classList.toggle('open'); } }
+        document.addEventListener('click', function(e) { const nav = document.getElementById('navMenu'); const toggle = document.querySelector('.nav-toggle'); if (!nav.contains(e.target) && !toggle.contains(e.target)) { nav.classList.remove('active'); } });
+    </script>
+</body>
+</html>

@@ -1,0 +1,996 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Innatraea | Fantasy Novellas by E.R. Zaugg</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #1a1510;
+            --bg-frame: #2a1f14;
+            --parchment: #e8dcc4;
+            --parchment-dark: #d4c4a8;
+            --gold: #c9a227;
+            --gold-light: #e8c547;
+            --text-dark: #2a1f14;
+            --text-light: #f5f0e6;
+            --border-ornate: #8b7355;
+            --wood-dark: #3d2b1f;
+            --wood-light: #5c4033;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            background: var(--bg-dark);
+            color: var(--text-light);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* HEADER / NAVIGATION */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: var(--bg-dark);
+            padding: 0.75rem 2rem;
+            border-bottom: 1px solid var(--border-ornate);
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo-img {
+            height: 50px;
+            width: auto;
+        }
+
+        .site-title {
+            font-family: 'Cinzel', serif;
+            font-size: 1.1rem;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            color: var(--parchment);
+        }
+
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .nav-toggle span {
+            display: block;
+            width: 25px;
+            height: 2px;
+            background: var(--parchment);
+            margin: 5px 0;
+            transition: 0.3s;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 0.25rem;
+        }
+
+        .nav-item {
+            position: relative;
+        }
+
+        .nav-link {
+            font-family: 'Cinzel', serif;
+            font-size: 0.7rem;
+            font-weight: 500;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--parchment);
+            text-decoration: none;
+            padding: 0.5rem 0.6rem;
+            transition: color 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+            white-space: nowrap;
+        }
+
+        .nav-link:hover {
+            color: var(--gold-light);
+        }
+
+        .nav-link .arrow {
+            font-size: 0.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .nav-item:hover .arrow {
+            transform: rotate(180deg);
+        }
+
+        .dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: var(--bg-dark);
+            border: 1px solid var(--border-ornate);
+            border-top: 2px solid var(--gold);
+            min-width: 200px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            list-style: none;
+            z-index: 100;
+        }
+
+        .nav-item:hover .dropdown {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown li a {
+            display: block;
+            padding: 0.75rem 1rem;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.95rem;
+            color: var(--parchment);
+            text-decoration: none;
+            border-bottom: 1px solid rgba(139,115,85,0.3);
+            transition: all 0.3s ease;
+        }
+
+        .dropdown li:last-child a {
+            border-bottom: none;
+        }
+
+        .dropdown li a:hover {
+            background: rgba(201,162,39,0.15);
+            color: var(--gold-light);
+            padding-left: 1.25rem;
+        }
+
+        /* HERO BANNER - Full width across top */
+        .hero-banner {
+            margin-top: 70px;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-banner img {
+            width: 100%;
+            height: auto;
+            display: block;
+            min-height: 300px;
+            object-fit: cover;
+        }
+
+        .hero-placeholder {
+            width: 100%;
+            min-height: 400px;
+            background: 
+                linear-gradient(135deg, rgba(201,162,39,0.1) 0%, transparent 50%),
+                linear-gradient(45deg, #1a1208 0%, #3d2b1f 30%, #5c4033 50%, #3d2b1f 70%, #1a1208 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 3rem;
+        }
+
+        .hero-placeholder .hero-logo {
+            max-width: 600px;
+            width: 80%;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-placeholder .hero-title {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(1rem, 3vw, 1.5rem);
+            letter-spacing: 0.3em;
+            color: var(--parchment);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .hero-placeholder .hero-seal {
+            width: 60px;
+            margin-top: 1.5rem;
+            opacity: 0.8;
+        }
+
+        /* MAIN CONTENT - SPLIT VIEW */
+        .main-content {
+            display: flex;
+            min-height: 80vh;
+        }
+
+        /* LEFT SIDE - CELTIC FRAME WITH VIDEO */
+        .split-left {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+            background: 
+                linear-gradient(135deg, #2d2118 0%, #1a1510 50%, #2d2118 100%);
+        }
+
+        .celtic-frame {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            /* Wood grain background */
+            background: 
+                repeating-linear-gradient(
+                    90deg,
+                    var(--wood-dark) 0px,
+                    var(--wood-light) 2px,
+                    var(--wood-dark) 4px
+                ),
+                linear-gradient(180deg, var(--wood-dark) 0%, #2a1a10 100%);
+            /* Ornate border */
+            border: 15px solid;
+            border-image: 
+                repeating-linear-gradient(
+                    45deg,
+                    var(--border-ornate) 0px,
+                    var(--gold) 8px,
+                    var(--border-ornate) 16px,
+                    #5c4a3a 24px,
+                    var(--border-ornate) 32px
+                ) 15;
+            box-shadow:
+                inset 0 0 40px rgba(0,0,0,0.6),
+                inset 0 0 80px rgba(0,0,0,0.3),
+                0 0 30px rgba(0,0,0,0.6),
+                0 15px 50px rgba(0,0,0,0.5);
+            padding: 1.5rem;
+        }
+
+        /* Ornate corner accents */
+        .celtic-frame::before,
+        .celtic-frame::after {
+            content: '';
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            border: 3px solid var(--gold);
+            opacity: 0.5;
+        }
+
+        .celtic-frame::before {
+            top: 20px;
+            left: 20px;
+            border-right: none;
+            border-bottom: none;
+        }
+
+        .celtic-frame::after {
+            bottom: 20px;
+            right: 20px;
+            border-left: none;
+            border-top: none;
+        }
+
+        .frame-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Video area inside frame */
+        .video-container {
+            width: 100%;
+            max-width: 500px;
+            position: relative;
+            box-shadow: 
+                0 8px 40px rgba(0,0,0,0.7),
+                0 0 0 4px var(--border-ornate),
+                0 0 0 6px rgba(201,162,39,0.3);
+        }
+
+        .video-container video {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .video-placeholder {
+            width: 100%;
+            aspect-ratio: 16/9;
+            background: 
+                radial-gradient(ellipse at 30% 30%, rgba(201,162,39,0.1) 0%, transparent 50%),
+                linear-gradient(135deg, #1a1208 0%, #2a1f14 50%, #1a1208 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: var(--border-ornate);
+            font-family: 'Cinzel', serif;
+            font-size: 0.85rem;
+            letter-spacing: 0.1em;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        /* Social links below frame */
+        .social-links {
+            display: flex;
+            gap: 0.75rem;
+            margin-top: 1.5rem;
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            border: 1px solid var(--border-ornate);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            background: rgba(26,21,16,0.8);
+        }
+
+        .social-link:hover {
+            border-color: var(--gold);
+            background: rgba(201,162,39,0.15);
+            transform: translateY(-2px);
+        }
+
+        .social-link img {
+            width: 20px;
+            height: 20px;
+            opacity: 0.85;
+        }
+
+        /* Wax Seal Decoration */
+        .wax-seal {
+            width: 100px;
+            height: 100px;
+            margin-top: 1.5rem;
+            opacity: 0.85;
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.4));
+        }
+
+        /* RIGHT SIDE - PARCHMENT SCROLL BACKGROUND */
+        .split-right {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            padding: 2rem 3rem;
+            background: 
+                url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><circle cx="30" cy="40" r="1" fill="%23b4a488" opacity="0.15"/><circle cx="120" cy="80" r="1.5" fill="%23a49478" opacity="0.1"/><circle cx="170" cy="150" r="1" fill="%23c4b498" opacity="0.12"/><circle cx="60" cy="180" r="0.8" fill="%23b4a488" opacity="0.1"/></svg>'),
+                linear-gradient(
+                    135deg,
+                    #e8dcc4 0%,
+                    #ddd0b8 25%,
+                    #d4c4a8 50%,
+                    #ddd0b8 75%,
+                    #e8dcc4 100%
+                );
+            background-size: 200px 200px, 100% 100%;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        .split-right::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            width: 30px;
+            background: linear-gradient(90deg, 
+                rgba(139,115,85,0.4) 0%, 
+                rgba(139,115,85,0.1) 50%,
+                transparent 100%
+            );
+            pointer-events: none;
+        }
+
+        .scroll-content {
+            max-width: 550px;
+            margin: 0 auto;
+        }
+
+        .innatraea-logo {
+            display: block;
+            max-width: 400px;
+            width: 100%;
+            margin: 0 auto 1.5rem;
+        }
+
+        .series-subtitle {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.15rem;
+            font-weight: 600;
+            font-style: italic;
+            color: var(--text-dark);
+            text-align: center;
+            margin-bottom: 1.25rem;
+        }
+
+        .tavid-quote {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.1rem;
+            font-style: italic;
+            color: var(--text-dark);
+            text-align: center;
+            margin-bottom: 1.5rem;
+            line-height: 1.5;
+        }
+
+        .tavid-quote cite {
+            display: block;
+            font-style: normal;
+            font-size: 0.95rem;
+            margin-top: 0.25rem;
+            color: var(--border-ornate);
+        }
+
+        .series-description {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.1rem;
+            line-height: 1.75;
+            color: var(--text-dark);
+            text-align: justify;
+            hyphens: auto;
+        }
+
+        .series-description p {
+            margin-bottom: 1rem;
+            text-indent: 2rem;
+        }
+
+        .series-description p:first-child {
+            text-indent: 0;
+        }
+
+        .character-intro {
+            margin: 1.5rem 0;
+            padding-left: 1rem;
+            border-left: 3px solid var(--gold);
+        }
+
+        .character-intro p {
+            text-indent: 0 !important;
+            margin-bottom: 0.75rem;
+        }
+
+        .character-name {
+            font-weight: 600;
+            color: var(--wood-dark);
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .cta-btn {
+            font-family: 'Cinzel', serif;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            text-decoration: none;
+            padding: 0.875rem 1.75rem;
+            border: 2px solid var(--text-dark);
+            color: var(--text-dark);
+            background: transparent;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .cta-btn:hover {
+            background: var(--text-dark);
+            color: var(--parchment);
+        }
+
+        .cta-btn.primary {
+            background: var(--text-dark);
+            color: var(--parchment);
+        }
+
+        .cta-btn.primary:hover {
+            background: var(--gold);
+            border-color: var(--gold);
+            color: var(--text-dark);
+        }
+
+        /* FOOTER */
+        footer {
+            background: var(--bg-dark);
+            border-top: 2px solid var(--border-ornate);
+            padding: 3rem 2rem;
+        }
+
+        .footer-content {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .footer-logo {
+            height: 80px;
+            margin-bottom: 1.25rem;
+            opacity: 0.9;
+        }
+
+        .footer-company {
+            font-family: 'Cinzel', serif;
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: var(--parchment);
+            margin-bottom: 0.25rem;
+            letter-spacing: 0.08em;
+        }
+
+        .footer-copyright {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.9rem;
+            color: var(--parchment);
+            opacity: 0.6;
+            margin-bottom: 2rem;
+        }
+
+        /* Newsletter Signup - Elegant Inline */
+        .newsletter-signup {
+            margin: 2rem auto;
+            max-width: 500px;
+        }
+
+        .newsletter-signup h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.1rem;
+            font-weight: 500;
+            font-style: italic;
+            color: var(--parchment);
+            margin-bottom: 1rem;
+            opacity: 0.9;
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 0;
+            border: 1px solid var(--border-ornate);
+            background: rgba(232,220,196,0.08);
+        }
+
+        .newsletter-input {
+            flex: 1;
+            padding: 0.875rem 1.25rem;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1rem;
+            border: none;
+            background: transparent;
+            color: var(--parchment);
+            outline: none;
+        }
+
+        .newsletter-input::placeholder {
+            color: var(--border-ornate);
+            opacity: 0.7;
+        }
+
+        .newsletter-btn {
+            padding: 0.875rem 1.5rem;
+            font-family: 'Cinzel', serif;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            background: var(--border-ornate);
+            color: var(--parchment);
+            border: none;
+            border-left: 1px solid var(--border-ornate);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .newsletter-btn:hover {
+            background: var(--gold);
+            color: var(--text-dark);
+        }
+
+        .footer-credit {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.85rem;
+            font-style: italic;
+            color: var(--gold);
+            opacity: 0.9;
+            margin-top: 2rem;
+        }
+
+        .footer-credit a {
+            color: var(--gold-light);
+            text-decoration: none;
+        }
+
+        .footer-credit a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 500px) {
+            .newsletter-form {
+                flex-direction: column;
+            }
+
+            .newsletter-btn {
+                border-left: none;
+                border-top: 1px solid var(--border-ornate);
+            }
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 1200px) {
+            .split-right {
+                padding: 2rem;
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .main-content {
+                flex-direction: column;
+            }
+
+            .split-left {
+                min-height: auto;
+                padding: 2rem 1rem;
+            }
+
+            .celtic-frame {
+                max-width: 500px;
+            }
+
+            .split-right {
+                min-height: auto;
+                padding: 2.5rem 2rem;
+            }
+
+            .nav-toggle {
+                display: block;
+            }
+
+            .nav-menu {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 280px;
+                height: 100vh;
+                background: var(--bg-dark);
+                flex-direction: column;
+                padding: 5rem 2rem 2rem;
+                transition: right 0.3s ease;
+                border-left: 1px solid var(--border-ornate);
+                overflow-y: auto;
+            }
+
+            .nav-menu.active {
+                right: 0;
+            }
+
+            .nav-link {
+                font-size: 0.85rem;
+                padding: 0.75rem 0;
+            }
+
+            .dropdown {
+                position: static;
+                opacity: 1;
+                visibility: visible;
+                transform: none;
+                background: transparent;
+                border: none;
+                padding-left: 1rem;
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.3s ease;
+            }
+
+            .nav-item.open .dropdown {
+                max-height: 500px;
+            }
+
+            .dropdown li a {
+                padding: 0.5rem 0;
+                border-bottom: none;
+            }
+        }
+
+        @media (max-width: 600px) {
+            header {
+                padding: 0.75rem 1rem;
+            }
+
+            .site-title {
+                font-size: 0.9rem;
+            }
+
+            .hero-placeholder {
+                min-height: 280px;
+            }
+
+            .hero-placeholder .hero-title {
+                letter-spacing: 0.15em;
+            }
+
+            .celtic-frame {
+                padding: 1rem;
+            }
+
+            .scroll-content {
+                padding: 0 0.5rem;
+            }
+
+            .innatraea-logo {
+                max-width: 280px;
+            }
+
+            .series-description {
+                font-size: 1rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+            }
+
+            .cta-btn {
+                width: 100%;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo-container">
+                <img src="https://static.wixstatic.com/media/24d929_ec1678b4b3f847a89f0e52934fc8222b~mv2.jpeg" alt="Innatraea" class="logo-img">
+                <span class="site-title">Innatraea Site Menu</span>
+            </div>
+
+            <button class="nav-toggle" aria-label="Toggle navigation" onclick="toggleNav()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <ul class="nav-menu" id="navMenu">
+                <li class="nav-item">
+                    <a href="index.html" class="nav-link">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="https://www.amazon.com/dp/B0DTBSX5QQ" class="nav-link" target="_blank">Buy Novellas</a>
+                </li>
+                <li class="nav-item">
+                    <a href="https://shop.ingramspark.com/b/084?params=mUsKM3cMiNJQ4zNQkwkjDeq8GHLjFdWTujr4EtppocK" class="nav-link" target="_blank">Buy Adventure</a>
+                </li>
+                <li class="nav-item">
+                    <a href="pages/maps.html" class="nav-link">Maps</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link" onclick="toggleDropdown(event, this)">Novellas <span class="arrow">▼</span></a>
+                    <ul class="dropdown">
+                        <li><a href="pages/novella-one.html">One: Small Footsteps</a></li>
+                        <li><a href="pages/novella-two.html">Two: Am'ayim</a></li>
+                        <li><a href="pages/novella-three.html">Three: Road to Bethseda</a></li>
+                        <li><a href="pages/novella-four.html">Four: Haitasi</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a href="pages/adventures.html" class="nav-link">Adventures</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link" onclick="toggleDropdown(event, this)">Short Stories <span class="arrow">▼</span></a>
+                    <ul class="dropdown">
+                        <li><a href="assets/pdfs/short-stories/scent-of-innocence-fall-2023.pdf" target="_blank">Scent of Innocence Fall 2023</a></li>
+                        <li><a href="assets/pdfs/short-stories/koliada-winter-2023.pdf" target="_blank">Koliada (Festival of Lights) Winter 2023</a></li>
+                        <li><a href="assets/pdfs/short-stories/sakturia-spring-2024.pdf" target="_blank">Sakturia (Festival of Water and Light) Spring 2024</a></li>
+                        <li><a href="assets/pdfs/short-stories/vardavar-summer-2024.pdf" target="_blank">Vardavar (Festival of Rose and Water) Summer 2024</a></li>
+                        <li><a href="assets/pdfs/short-stories/praznik-na-vrani-fall-2024.pdf" target="_blank">Praznik na Vrani (Feast of Crows) Fall 2024</a></li>
+                        <li><a href="assets/pdfs/short-stories/geohhol-winter-2024.pdf" target="_blank">Geohhol (Festival of Feast and Fire) Winter 2024</a></li>
+                        <li><a href="assets/pdfs/short-stories/tzipcanu-spring-2025.pdf" target="_blank">Tzipcanu (Bird Festival) Spring 2025</a></li>
+                        <li><a href="assets/pdfs/short-stories/gogi-asherah-summer-2025.pdf" target="_blank">Gogi Asherah (Summer of Asherah) Summer 2025</a></li>
+                        <li><a href="assets/pdfs/short-stories/tlailli-mahuizotl-fall-2025.pdf" target="_blank">Tlailli Mahuizotl (Celebration of Pain) Fall 2025</a></li>
+                        <li><a href="assets/pdfs/short-stories/lumresca-winter-2025.pdf" target="_blank">Lumresca (Festival of Light and Rebirth) Winter 2025</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a href="pages/mira-vox.html" class="nav-link">Mira Vox</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link" onclick="toggleDropdown(event, this)">Poetry <span class="arrow">▼</span></a>
+                    <ul class="dropdown">
+                        <li><a href="assets/pdfs/poetry/a-soft-chaos.pdf" target="_blank">A Soft Chaos</a></li>
+                        <li><a href="assets/pdfs/poetry/the-game-of-hope-and-despair.pdf" target="_blank">The Game of Hope and Despair</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link" onclick="toggleDropdown(event, this)">More <span class="arrow">▼</span></a>
+                    <ul class="dropdown">
+                        <li><a href="https://www.fiverr.com/s/bdWakgm" target="_blank">Find me on Fiverr</a></li>
+                        <li><a href="https://sentx.io/nft-marketplace/innatraea-asherah-trees" target="_blank">Asherah Trees</a></li>
+                        <li><a href="https://sentx.io/nft-marketplace/creators/innatraea" target="_blank">Hedera Art Collections</a></li>
+                        <li><a href="https://objkt.com/@innatraea" target="_blank">Tezos Art Collections</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link" onclick="toggleDropdown(event, this)">Partners <span class="arrow">▼</span></a>
+                    <ul class="dropdown">
+                        <li><a href="https://quietinternet.com/" target="_blank">Quiet Internet</a></li>
+                        <li><a href="https://mirrorize.ai/" target="_blank">Mirrorize AI</a></li>
+                        <li><a href="https://www.futuritygalaxies.com/" target="_blank">Futurity Galaxies</a></li>
+                        <li><a href="https://hhw3.org/mzqcnuvp/" target="_blank">H3x (Helping Hands of Web3)</a></li>
+                        <li><a href="https://x.com/hydroyeti" target="_blank">Hydrolabs</a></li>
+                        <li><a href="https://x.com/FreeArtMind" target="_blank">Fam@Play</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a href="pages/author.html" class="nav-link">Author</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- HERO BANNER - Swap this for each novella release -->
+    <section class="hero-banner">
+        <!-- Replace with actual banner image -->
+        <div class="hero-placeholder">
+            <img src="https://static.wixstatic.com/media/24d929_5e395f80a9d84dda82d68815b4589d71~mv2.png" alt="INNATRAEA" class="hero-logo">
+            <span class="hero-title">NOVELLA THREE: ROAD TO BETHSEDA</span>
+            <img src="https://static.wixstatic.com/media/24d929_ec1678b4b3f847a89f0e52934fc8222b~mv2.jpeg" alt="" class="hero-seal">
+        </div>
+        <!-- 
+        <img src="assets/images/banner-novella-four.jpg" alt="Novella Four: Haitasi - Coming Soon">
+        -->
+    </section>
+
+    <!-- MAIN SPLIT CONTENT -->
+    <main class="main-content">
+        <section class="split-left">
+            <div class="celtic-frame">
+                <div class="frame-content">
+                    <div class="video-container">
+                        <!-- Promo video goes here -->
+                        <div class="video-placeholder">
+                            <span>[ Promo Video ]</span>
+                        </div>
+                        <!-- 
+                        <video autoplay muted loop playsinline>
+                            <source src="assets/video/promo.mp4" type="video/mp4">
+                        </video>
+                        -->
+                    </div>
+                </div>
+            </div>
+            
+            <div class="social-links">
+                <a href="mailto:innatraea@gmail.com" class="social-link" title="Email">
+                    <img src="https://static.wixstatic.com/media/24d929_86f18f96151d4bdb9ab2ae7b5b43eb7d~mv2.png" alt="Email">
+                </a>
+                <a href="https://www.instagram.com/innatraea/" class="social-link" title="Instagram" target="_blank">
+                    <img src="https://static.wixstatic.com/media/11062b_55e4be1e75564866b6c28290f9a9d271~mv2.png" alt="Instagram">
+                </a>
+                <a href="https://twitter.com/Kurokojin" class="social-link" title="X / Twitter" target="_blank">
+                    <img src="https://static.wixstatic.com/media/11062b_bc7125385fcf422cad29fbe20a2b237c~mv2.png" alt="X">
+                </a>
+                <a href="https://t.co/eONvCdvUUZ" class="social-link" title="Discord" target="_blank">
+                    <img src="https://static.wixstatic.com/media/11062b_5786213245914dde873f6b286a16854c~mv2.png" alt="Discord">
+                </a>
+                <a href="https://www.amazon.com/stores/E.R.-Zaugg/author/B0DTB4B7K9" class="social-link" title="Amazon" target="_blank">
+                    <img src="https://static.wixstatic.com/media/11062b_725eaa1f4f174cf08856381fa94d0483~mv2.png" alt="Amazon">
+                </a>
+            </div>
+
+            <!-- Wax Seal - swap with local asset: assets/images/wax-seal.png -->
+            <img src="https://static.wixstatic.com/media/24d929_86f18f96151d4bdb9ab2ae7b5b43eb7d~mv2.png" alt="" class="wax-seal">
+        </section>
+
+        <section class="split-right">
+            <div class="scroll-content">
+                <img src="https://static.wixstatic.com/media/24d929_5e395f80a9d84dda82d68815b4589d71~mv2.png" alt="INNATRAEA" class="innatraea-logo">
+                
+                <p class="series-subtitle">Innatraea: An Epic Fantasy Saga of Destiny, Sacrifice, and Love</p>
+
+                <p class="tavid-quote">
+                    "Every legend begins with the small footsteps of ordinary Innatraeans."
+                    <cite>— Tavid the Traveler</cite>
+                </p>
+
+                <div class="series-description">
+                    <p>Step into Innatraea, a world where magic shapes fate and women — Weavers, warriors, matriarchs, and queens — stand at the center of power. Across diverse kingdoms and ancient realms, sentient mythical creatures walk alongside humanity, cultures clash and intertwine, and secrets buried for generations rise to change everything.</p>
+                    
+                    <p>At its heart are three childhood friends from the quiet farm town of Aliselle Falls, each called to a different destiny:</p>
+
+                    <div class="character-intro">
+                        <p><span class="character-name">Rosalie Sharone,</span> a Weaver prodigy of unmatched power, journeys to join an ancient order that could make her the most powerful woman in Innatraea — or destroy everything she loves.</p>
+                        
+                        <p><span class="character-name">Ariela Marelda,</span> a warrior born to the sea, must navigate treacherous waters of politics and prejudice as she fights to prove herself in a world that sees her as less than human.</p>
+                        
+                        <p><span class="character-name">Jonaas Al'Shane,</span> a simple farm boy with a hidden past, discovers that the truth of his birth could reshape the fate of an ancient, dying race — if it doesn't kill him first.</p>
+                    </div>
+
+                    <p>Their paths diverge across kingdoms, oceans, and realms beyond time itself. But destiny has woven their fates together, and what they discover will challenge everything they believe about magic, sacrifice, and what it truly means to love.</p>
+                </div>
+
+                <div class="cta-buttons">
+                    <a href="https://www.amazon.com/dp/B0DTBSX5QQ" class="cta-btn primary" target="_blank">Begin the Journey</a>
+                    <a href="pages/novella-one.html" class="cta-btn">Explore the World</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <img src="https://static.wixstatic.com/media/24d929_ec1678b4b3f847a89f0e52934fc8222b~mv2.jpeg" alt="Innatraea" class="footer-logo">
+            <p class="footer-company">Innatraea, LLC | 2025</p>
+            <p class="footer-copyright">© 2025 by Innatraea</p>
+
+            <div class="newsletter-signup">
+                <h3>Become an Innatraean</h3>
+                <form class="newsletter-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+                    <input type="email" name="email" class="newsletter-input" placeholder="Enter your email" required>
+                    <button type="submit" class="newsletter-btn">Subscribe</button>
+                </form>
+            </div>
+
+            <p class="footer-credit">Built by <a href="pages/mira-vox.html">Mira Vox</a></p>
+        </div>
+    </footer>
+
+    <script>
+        function toggleNav() {
+            document.getElementById('navMenu').classList.toggle('active');
+        }
+
+        function toggleDropdown(e, element) {
+            if (window.innerWidth <= 1024) {
+                e.preventDefault();
+                element.closest('.nav-item').classList.toggle('open');
+            }
+        }
+
+        document.addEventListener('click', function(e) {
+            const nav = document.getElementById('navMenu');
+            const toggle = document.querySelector('.nav-toggle');
+            if (!nav.contains(e.target) && !toggle.contains(e.target)) {
+                nav.classList.remove('active');
+            }
+        });
+    </script>
+</body>
+</html>
