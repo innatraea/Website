@@ -294,18 +294,19 @@
             display: flex;
             gap: 0.75rem;
             margin-top: 1.5rem;
+            justify-content: center;
         }
 
         .social-link {
             width: 40px;
             height: 40px;
-            border: 1px solid var(--border-ornate);
+            border: 1px solid rgba(139,115,85,0.5);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             transition: all 0.3s ease;
-            background: rgba(26,21,16,0.8);
+            background: transparent;
         }
 
         .social-link:hover {
@@ -315,15 +316,17 @@
         }
 
         .social-link img {
-            width: 20px;
-            height: 20px;
-            opacity: 0.85;
+            width: 22px;
+            height: 22px;
+            opacity: 0.75;
         }
 
         /* Wax Seal Decoration */
         .wax-seal {
             width: 100px;
-            height: 100px;
+            height: auto;
+            aspect-ratio: 1 / 1;
+            object-fit: contain;
             margin-top: 1.5rem;
             opacity: 0.85;
             filter: drop-shadow(0 4px 8px rgba(0,0,0,0.4));
@@ -728,7 +731,7 @@
     <header>
         <nav>
             <div class="logo-container">
-                <img src="https://static.wixstatic.com/media/24d929_ec1678b4b3f847a89f0e52934fc8222b~mv2.jpeg" alt="Innatraea" class="logo-img">
+                <img src="assets/images/logos/InnatraealogoC.jpg" alt="Innatraea" class="logo-img">
                 <span class="site-title">Innatraea Site Menu</span>
             </div>
 
@@ -836,7 +839,7 @@
             
             <div class="social-links">
                 <a href="mailto:innatraea@gmail.com" class="social-link" title="Email">
-                    <img src="https://static.wixstatic.com/media/24d929_86f18f96151d4bdb9ab2ae7b5b43eb7d~mv2.png" alt="Email">
+                    <img src="assets/images/logos/WaxSeal.png" alt="Email">
                 </a>
                 <a href="https://www.instagram.com/innatraea/" class="social-link" title="Instagram" target="_blank">
                     <img src="https://static.wixstatic.com/media/11062b_55e4be1e75564866b6c28290f9a9d271~mv2.png" alt="Instagram">
@@ -853,12 +856,12 @@
             </div>
 
             <!-- Wax Seal - swap with local asset: assets/images/wax-seal.png -->
-            <img src="https://static.wixstatic.com/media/24d929_86f18f96151d4bdb9ab2ae7b5b43eb7d~mv2.png" alt="" class="wax-seal">
+            <img src="assets/images/logos/WaxSeal.png" alt="" class="wax-seal">
         </section>
 
         <section class="split-right">
             <div class="scroll-content">
-                <img src="https://static.wixstatic.com/media/24d929_5e395f80a9d84dda82d68815b4589d71~mv2.png" alt="INNATRAEA" class="innatraea-logo">
+                <img src="assets/images/logos/Innatraea.png" alt="INNATRAEA" class="innatraea-logo">
                 
                 <p class="series-subtitle">Innatraea: An Epic Fantasy Saga of Destiny, Sacrifice, and Love</p>
 
@@ -893,7 +896,7 @@
 
     <footer>
         <div class="footer-content">
-            <img src="https://static.wixstatic.com/media/24d929_ec1678b4b3f847a89f0e52934fc8222b~mv2.jpeg" alt="Innatraea" class="footer-logo">
+            <img src="assets/images/logos/InnatraealogoC.jpg" alt="Innatraea" class="footer-logo">
             <p class="footer-company">Innatraea, LLC | 2025</p>
             <p class="footer-copyright">© 2025 by Innatraea</p>
 
