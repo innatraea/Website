@@ -245,57 +245,7 @@
             position: relative;
             width: 100%;
             max-width: 600px;
-            /* Wood grain background */
-            background: 
-                repeating-linear-gradient(
-                    90deg,
-                    var(--wood-dark) 0px,
-                    var(--wood-light) 2px,
-                    var(--wood-dark) 4px
-                ),
-                linear-gradient(180deg, var(--wood-dark) 0%, #2a1a10 100%);
-            /* Ornate border */
-            border: 15px solid;
-            border-image: 
-                repeating-linear-gradient(
-                    45deg,
-                    var(--border-ornate) 0px,
-                    var(--gold) 8px,
-                    var(--border-ornate) 16px,
-                    #5c4a3a 24px,
-                    var(--border-ornate) 32px
-                ) 15;
-            box-shadow:
-                inset 0 0 40px rgba(0,0,0,0.6),
-                inset 0 0 80px rgba(0,0,0,0.3),
-                0 0 30px rgba(0,0,0,0.6),
-                0 15px 50px rgba(0,0,0,0.5);
-            padding: 1.5rem;
-        }
-
-        /* Ornate corner accents */
-        .celtic-frame::before,
-        .celtic-frame::after {
-            content: '';
-            position: absolute;
-            width: 50px;
-            height: 50px;
-            border: 3px solid var(--gold);
-            opacity: 0.5;
-        }
-
-        .celtic-frame::before {
-            top: 20px;
-            left: 20px;
-            border-right: none;
-            border-bottom: none;
-        }
-
-        .celtic-frame::after {
-            bottom: 20px;
-            right: 20px;
-            border-left: none;
-            border-top: none;
+            padding: 0;
         }
 
         .frame-content {
@@ -344,18 +294,19 @@
             display: flex;
             gap: 0.75rem;
             margin-top: 1.5rem;
+            justify-content: center;
         }
 
         .social-link {
             width: 40px;
             height: 40px;
-            border: 1px solid var(--border-ornate);
+            border: 1px solid rgba(139,115,85,0.5);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             transition: all 0.3s ease;
-            background: rgba(26,21,16,0.8);
+            background: transparent;
         }
 
         .social-link:hover {
@@ -365,15 +316,17 @@
         }
 
         .social-link img {
-            width: 20px;
-            height: 20px;
-            opacity: 0.85;
+            width: 22px;
+            height: 22px;
+            opacity: 0.75;
         }
 
         /* Wax Seal Decoration */
         .wax-seal {
             width: 100px;
-            height: 100px;
+            height: auto;
+            aspect-ratio: 1 / 1;
+            object-fit: contain;
             margin-top: 1.5rem;
             opacity: 0.85;
             filter: drop-shadow(0 4px 8px rgba(0,0,0,0.4));
@@ -778,7 +731,7 @@
     <header>
         <nav>
             <div class="logo-container">
-                <img src="https://static.wixstatic.com/media/24d929_ec1678b4b3f847a89f0e52934fc8222b~mv2.jpeg" alt="Innatraea" class="logo-img">
+                <img src="assets/images/logos/InnatraealogoC.jpeg" alt="Innatraea" class="logo-img">
                 <span class="site-title">Innatraea Site Menu</span>
             </div>
 
@@ -816,16 +769,16 @@
                 <li class="nav-item">
                     <a href="#" class="nav-link" onclick="toggleDropdown(event, this)">Short Stories <span class="arrow">▼</span></a>
                     <ul class="dropdown">
-                        <li><a href="assets/pdfs/short-stories/scent-of-innocence-fall-2023.pdf" target="_blank">Scent of Innocence Fall 2023</a></li>
-                        <li><a href="assets/pdfs/short-stories/koliada-winter-2023.pdf" target="_blank">Koliada (Festival of Lights) Winter 2023</a></li>
-                        <li><a href="assets/pdfs/short-stories/sakturia-spring-2024.pdf" target="_blank">Sakturia (Festival of Water and Light) Spring 2024</a></li>
-                        <li><a href="assets/pdfs/short-stories/vardavar-summer-2024.pdf" target="_blank">Vardavar (Festival of Rose and Water) Summer 2024</a></li>
-                        <li><a href="assets/pdfs/short-stories/praznik-na-vrani-fall-2024.pdf" target="_blank">Praznik na Vrani (Feast of Crows) Fall 2024</a></li>
-                        <li><a href="assets/pdfs/short-stories/geohhol-winter-2024.pdf" target="_blank">Geohhol (Festival of Feast and Fire) Winter 2024</a></li>
-                        <li><a href="assets/pdfs/short-stories/tzipcanu-spring-2025.pdf" target="_blank">Tzipcanu (Bird Festival) Spring 2025</a></li>
-                        <li><a href="assets/pdfs/short-stories/gogi-asherah-summer-2025.pdf" target="_blank">Gogi Asherah (Summer of Asherah) Summer 2025</a></li>
-                        <li><a href="assets/pdfs/short-stories/tlailli-mahuizotl-fall-2025.pdf" target="_blank">Tlailli Mahuizotl (Celebration of Pain) Fall 2025</a></li>
-                        <li><a href="assets/pdfs/short-stories/lumresca-winter-2025.pdf" target="_blank">Lumresca (Festival of Light and Rebirth) Winter 2025</a></li>
+                        <li><a href="assets/pdfs/short-stories/the-scent-of-innocence.pdf" target="_blank">Scent of Innocence Fall 2023</a></li>
+                        <li><a href="assets/pdfs/short-stories/Koliada.pdf" target="_blank">Koliada (Festival of Lights) Winter 2023</a></li>
+                        <li><a href="assets/pdfs/short-stories/Sakturia.pdf" target="_blank">Sakturia (Festival of Water and Light) Spring 2024</a></li>
+                        <li><a href="assets/pdfs/short-stories/Vardavar.pdf" target="_blank">Vardavar (Festival of Rose and Water) Summer 2024</a></li>
+                        <li><a href="assets/pdfs/short-stories/praznik-na-vrani.pdf" target="_blank">Praznik na Vrani (Feast of Crows) Fall 2024</a></li>
+                        <li><a href="assets/pdfs/short-stories/Geohhol.pdf" target="_blank">Geohhol (Festival of Feast and Fire) Winter 2024</a></li>
+                        <li><a href="assets/pdfs/short-stories/tzipcanu.pdf" target="_blank">Tzipcanu (Bird Festival) Spring 2025</a></li>
+                        <li><a href="assets/pdfs/short-stories/gogi-asherah.pdf" target="_blank">Gogi Asherah (Summer of Asherah) Summer 2025</a></li>
+                        <li><a href="assets/pdfs/short-stories/tlailli-mahuizotl.pdf" target="_blank">Tlailli Mahuizotl (Celebration of Pain) Fall 2025</a></li>
+                        <li><a href="assets/pdfs/short-stories/Lumresca.pdf" target="_blank">Lumresca (Festival of Light and Rebirth) Winter 2025</a></li>
                     </ul>
                 </li>
                 <li class="nav-item">
@@ -834,8 +787,8 @@
                 <li class="nav-item">
                     <a href="#" class="nav-link" onclick="toggleDropdown(event, this)">Poetry <span class="arrow">▼</span></a>
                     <ul class="dropdown">
-                        <li><a href="assets/pdfs/poetry/a-soft-chaos.pdf" target="_blank">A Soft Chaos</a></li>
-                        <li><a href="assets/pdfs/poetry/the-game-of-hope-and-despair.pdf" target="_blank">The Game of Hope and Despair</a></li>
+                        <li><a href="assets/pdfs/poetry/a-s0ft-chaos.pdf" target="_blank">A Soft Chaos</a></li>
+                        <li><a href="assets/pdfs/poetry/the-game-of-hope-and-despar.pdf" target="_blank">The Game of Hope and Despair</a></li>
                     </ul>
                 </li>
                 <li class="nav-item">
@@ -867,15 +820,7 @@
 
     <!-- HERO BANNER - Swap this for each novella release -->
     <section class="hero-banner">
-        <!-- Replace with actual banner image -->
-        <div class="hero-placeholder">
-            <img src="https://static.wixstatic.com/media/24d929_5e395f80a9d84dda82d68815b4589d71~mv2.png" alt="INNATRAEA" class="hero-logo">
-            <span class="hero-title">NOVELLA THREE: ROAD TO BETHSEDA</span>
-            <img src="https://static.wixstatic.com/media/24d929_ec1678b4b3f847a89f0e52934fc8222b~mv2.jpeg" alt="" class="hero-seal">
-        </div>
-        <!-- 
-        <img src="assets/novellathreebanner.jpg" alt="Innatraea">
-        -->
+        <img src="assets/images/banners/NovellaThreeBanner.jpg" alt="Innatraea">
     </section>
 
     <!-- MAIN SPLIT CONTENT -->
@@ -884,22 +829,17 @@
             <div class="celtic-frame">
                 <div class="frame-content">
                     <div class="video-container">
-                        <!-- Promo video goes here -->
-                        <div class="video-placeholder">
-                            <span>[ Promo Video ]</span>
-                        </div>
-                        <!-- 
-                        <video autoplay muted loop playsinline>
-                            <source src="assets/video/promo.mp4" type="video/mp4">
+                        <video controls>
+                            <source src="assets/videos/PromoVideo.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
                         </video>
-                        -->
                     </div>
                 </div>
             </div>
             
             <div class="social-links">
                 <a href="mailto:innatraea@gmail.com" class="social-link" title="Email">
-                    <img src="https://static.wixstatic.com/media/24d929_86f18f96151d4bdb9ab2ae7b5b43eb7d~mv2.png" alt="Email">
+                    <img src="assets/images/logos/WaxSeal.png" alt="Email">
                 </a>
                 <a href="https://www.instagram.com/innatraea/" class="social-link" title="Instagram" target="_blank">
                     <img src="https://static.wixstatic.com/media/11062b_55e4be1e75564866b6c28290f9a9d271~mv2.png" alt="Instagram">
@@ -916,12 +856,12 @@
             </div>
 
             <!-- Wax Seal - swap with local asset: assets/images/wax-seal.png -->
-            <img src="https://static.wixstatic.com/media/24d929_86f18f96151d4bdb9ab2ae7b5b43eb7d~mv2.png" alt="" class="wax-seal">
+            <img src="assets/images/logos/WaxSeal.png" alt="" class="wax-seal">
         </section>
 
         <section class="split-right">
             <div class="scroll-content">
-                <img src="https://static.wixstatic.com/media/24d929_5e395f80a9d84dda82d68815b4589d71~mv2.png" alt="INNATRAEA" class="innatraea-logo">
+                <img src="assets/images/logos/Innatraea.png" alt="INNATRAEA" class="innatraea-logo">
                 
                 <p class="series-subtitle">Innatraea: An Epic Fantasy Saga of Destiny, Sacrifice, and Love</p>
 
@@ -956,16 +896,16 @@
 
     <footer>
         <div class="footer-content">
-            <img src="https://static.wixstatic.com/media/24d929_ec1678b4b3f847a89f0e52934fc8222b~mv2.jpeg" alt="Innatraea" class="footer-logo">
+            <img src="assets/images/logos/InnatraealogoC.jpeg" alt="Innatraea" class="footer-logo">
             <p class="footer-company">Innatraea, LLC | 2025</p>
             <p class="footer-copyright">© 2025 by Innatraea</p>
 
             <div class="newsletter-signup">
                 <h3>Become an Innatraean</h3>
-                <form class="newsletter-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
-                    <input type="email" name="email" class="newsletter-input" placeholder="Enter your email" required>
-                    <button type="submit" class="newsletter-btn">Subscribe</button>
-                </form>
+                <div class="newsletter-embed">
+                    <script async src="https://subscribe-forms.beehiiv.com/embed.js"></script>
+                    <iframe src="https://subscribe-forms.beehiiv.com/b965f987-230e-40de-bb08-f13efc731737" class="beehiiv-embed" data-test-id="beehiiv-embed" frameborder="0" scrolling="no" style="width: 100%; max-width: 400px; height: 80px; margin: 0; background-color: transparent;"></iframe>
+                </div>
             </div>
 
             <p class="footer-credit">Built by <a href="pages/mira-vox.html">Mira Vox</a></p>
