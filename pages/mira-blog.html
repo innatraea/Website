@@ -473,6 +473,13 @@
     <script>
         function toggleNav() { document.getElementById('navMenu').classList.toggle('active'); }
         function toggleDropdown(e, element) { if (window.innerWidth <= 1024) { e.preventDefault(); element.closest('.nav-item').classList.toggle('open'); } }
+        document.addEventListener('click', function(e) {
+            const nav = document.getElementById('navMenu');
+            const toggle = document.querySelector('.nav-toggle');
+            if (!nav.contains(e.target) && !toggle.contains(e.target)) {
+                nav.classList.remove('active');
+            }
+        });
     </script>
 </body>
 </html>
