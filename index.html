@@ -189,6 +189,7 @@
             display: block;
             min-height: 300px;
             object-fit: cover;
+            object-position: 25% center;
         }
 
         .hero-placeholder {
@@ -610,6 +611,10 @@
                 border-left: none;
                 border-top: 1px solid var(--border-ornate);
             }
+
+            .hero-banner img {
+                object-position: 15% center;
+            }
         }
 
         /* RESPONSIVE */
@@ -695,6 +700,11 @@
 
             .site-title {
                 font-size: 0.9rem;
+            }
+
+            .hero-banner img {
+                object-position: 20% center;
+                min-height: 250px;
             }
 
             .hero-placeholder {
