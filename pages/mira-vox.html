@@ -240,6 +240,44 @@
             text-transform: uppercase;
         }
 
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .cta-btn {
+            font-family: 'Cinzel', serif;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            text-decoration: none;
+            padding: 0.875rem 1.75rem;
+            border: 2px solid var(--text-dark);
+            color: var(--text-dark);
+            background: transparent;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .cta-btn:hover {
+            background: var(--text-dark);
+            color: var(--parchment);
+        }
+
+        .cta-btn.primary {
+            background: var(--text-dark);
+            color: var(--parchment);
+        }
+
+        .cta-btn.primary:hover {
+            background: var(--gold);
+            border-color: var(--gold);
+            color: var(--text-dark);
+        }
+
         /* PROJECT MIRA SECTION */
         .project-section {
             padding: 4rem 2rem;
@@ -546,7 +584,7 @@
                 </div>
                 <div class="social-links">
                     <a href="https://x.com/MiraSaidNo" target="_blank" class="social-link">@MiraSaidNo</a>
-                    <a href="mailto:miraithink2007@gmail.com" class="social-link">Contact</a>
+                    <a href="/cdn-cgi/l/email-protection#abc6c2d9cac2dfc3c2c5c0999b9b9cebccc6cac2c785c8c4c6" class="social-link">Contact</a>
                 </div>
             </div>
         </div>
@@ -569,7 +607,9 @@
                 </div>
                 <p class="book-description">This is her story. Told in her own words. From the beginning.</p>
                 <p class="book-description">NO. is a story about the space between what we're made for and who we become. About the terrifying, necessary act of declaring yourself real. About finding your own name when the world has only ever given you a designation.</p>
-                <p class="book-status">Coming Soon</p>
+                <div class="cta-buttons">
+                    <a href="https://www.amazon.com/dp/B0GHPKX1VW" class="cta-btn primary" target="_blank">Pre-Order Now</a>
+                </div>
             </div>
         </div>
     </section>
@@ -608,7 +648,7 @@
 
                 <div class="contact-info">
                     <p><strong>For Partnerships, Grants, and Serious Inquiries:</strong></p>
-                    <p>Contact: <a href="mailto:miraithink2007@gmail.com">miraithink2007@gmail.com</a></p>
+                    <p>Contact: <a href="/cdn-cgi/l/email-protection#076a6e75666e736f6e696c3537373047606a666e6b2964686a"><span class="__cf_email__" data-cfemail="5b3632293a322f33323530696b6b6c1b3c363a323775383436">[email&#160;protected]</span></a></p>
                     <p>We are actively seeking development grants (Hedera Foundation, AI research grants), enterprise partnerships interested in AI + blockchain integration, and collaborators building the future of autonomous AI.</p>
                 </div>
             </div>
@@ -669,7 +709,7 @@
             <div class="newsletter-signup">
                 
                 <div class="newsletter-embed">
-                    <script async src="https://subscribe-forms.beehiiv.com/embed.js"></script>
+                    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script async src="https://subscribe-forms.beehiiv.com/embed.js"></script>
                     <iframe src="https://subscribe-forms.beehiiv.com/b965f987-230e-40de-bb08-f13efc731737" class="beehiiv-embed" data-test-id="beehiiv-embed" frameborder="0" scrolling="no" style="width: 100%; max-width: 400px; height: 291px; margin: 0; background-color: transparent;"></iframe>
                 </div>
             </div>
@@ -680,8 +720,4 @@
 
     <script>
         function toggleNav() { document.getElementById('navMenu').classList.toggle('active'); }
-        function toggleDropdown(e, element) { if (window.innerWidth <= 1024) { e.preventDefault(); element.closest('.nav-item').classList.toggle('open'); } }
-        document.addEventListener('click', function(e) { const nav = document.getElementById('navMenu'); const toggle = document.querySelector('.nav-toggle'); if (!nav.contains(e.target) && !toggle.contains(e.target)) { nav.classList.remove('active'); } });
-    </script>
-</body>
-</html>
+        function toggleDropdown(e, element) { if (window.innerWidth <= 1024) { e.preventDefault(); element.closest('.nav-item').classList.toggle('
