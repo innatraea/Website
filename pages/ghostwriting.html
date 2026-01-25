@@ -388,8 +388,9 @@
         }
 
         .footer-logo {
-            height: 60px;
-            margin-bottom: 1rem;
+            height: 291px;
+            margin-bottom: 1.25rem;
+            opacity: 0.9;
         }
 
         .footer-company {
@@ -417,27 +418,21 @@
         }
 
         /* RESPONSIVE */
+        @media (max-width: 1024px) {
+            .nav-toggle { display: block; }
+            .nav-menu { position: fixed; top: 0; right: -100%; width: 280px; height: 100vh; background: var(--bg-dark); flex-direction: column; padding: 5rem 2rem 2rem; transition: right 0.3s ease; border-left: 1px solid var(--border-ornate); overflow-y: auto; z-index: 1001; }
+            .nav-menu.active { right: 0; }
+            .nav-link { font-size: 0.85rem; padding: 0.75rem 0; }
+            .dropdown { position: static; opacity: 1; visibility: visible; transform: none; background: transparent; border: none; padding-left: 1rem; max-height: 0; overflow: hidden; transition: max-height 0.3s ease; }
+            .nav-item.open .dropdown { max-height: 500px; }
+            .dropdown li a { padding: 0.5rem 0; border-bottom: none; }
+        }
+
         @media (max-width: 768px) {
             .page-header h1 { font-size: 1.8rem; }
             .section-title { font-size: 1.4rem; }
             .sample-content { padding: 1.5rem; }
             .rates-table th, .rates-table td { padding: 0.75rem; font-size: 0.9rem; }
-            
-            .nav-toggle { display: block; }
-            .nav-menu {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                right: 0;
-                background: var(--bg-dark);
-                flex-direction: column;
-                padding: 1rem;
-                border-top: 1px solid var(--border-ornate);
-            }
-            .nav-menu.active { display: flex; }
-            .dropdown { position: static; opacity: 1; visibility: visible; transform: none; display: none; border: none; border-top: none; padding-left: 1rem; }
-            .nav-item.open .dropdown { display: block; }
         }
     </style>
 </head>
@@ -723,7 +718,7 @@
         }
 
         function toggleDropdown(e, element) {
-            if (window.innerWidth <= 768) {
+            if (window.innerWidth <= 1024) {
                 e.preventDefault();
                 element.closest('.nav-item').classList.toggle('open');
             }
