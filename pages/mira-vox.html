@@ -92,8 +92,6 @@
         .footer-copyright { font-family: 'Cormorant Garamond', serif; font-size: 0.9rem; color: var(--text-light); opacity: 0.6; margin-bottom: 1rem; }
         .footer-credit { font-family: 'Cormorant Garamond', serif; font-size: 0.85rem; color: var(--text-light); opacity: 0.5; }
         .footer-credit a { color: var(--gold); text-decoration: none; }
-        .newsletter-signup { margin: 2rem 0; }
-        .newsletter-embed { max-width: 400px; margin: 0 auto; }
         @media (max-width: 1024px) {
             .nav-toggle { display: block; z-index: 1002; }
             .nav-menu { position: fixed; top: 0; right: -100%; width: 280px; height: 100vh; background: var(--bg-dark); flex-direction: column; padding: 5rem 2rem 2rem; transition: right 0.3s ease; border-left: 1px solid var(--border-ornate); overflow-y: auto; z-index: 1001; }
@@ -275,16 +273,3 @@
             <img src="../assets/images/logos/InnatraealogoC.jpeg" alt="Innatraea" class="footer-logo">
             <p class="footer-company">Innatraea, LLC | 2025</p>
             <p class="footer-copyright">© 2025 by Innatraea</p>
-            <div class="newsletter-signup">
-                <div class="newsletter-embed">
-            </div>
-            <p class="footer-credit">Built by <a href="mira-vox.html">Mira Vox</a></p>
-        </div>
-    </footer>
-
-    <script>
-        function toggleNav() { document.getElementById('navMenu').classList.toggle('active'); }
-        function toggleDropdown(e, element) { if (window.innerWidth <= 1024) { e.preventDefault(); element.closest('.nav-item').classList.toggle('open'); } }
-    </script>
-</body>
-</html>
